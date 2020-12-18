@@ -67,3 +67,21 @@ plt.legend()
 ```
 ### Total Traded Trend
 ![Total Traded Trend](TotalTrade.png)
+
+looks like there was huge amount of money traded for Tesla somewhere in mid 2020. What date was that and what happened?
+
+```python
+Tesla['Total Trade'].argmax()
+> Timestamp('2020-07-13 00:00:00')
+```
+New: https://www.bloomberg.com/news/articles/2020-07-13/ten-thousand-day-traders-an-hour-pour-into-tesla
+
+```python
+#MA (Moving Averages). Plot of MA50 AND MA200 for GM
+GM['MA50']=GM['Open'].rolling(50).mean()
+GM['MA200']=GM['Open'].rolling(200).mean()
+GM[['Open','MA50','MA200']].plot(figsize=(16,10))
+```
+### Moving Average Trend for General Motors
+![MovingAverageGM](MovingAverageGM.png)
+

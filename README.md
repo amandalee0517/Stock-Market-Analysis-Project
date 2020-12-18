@@ -118,6 +118,49 @@ candlestick_ohlc(ax, tesla_values, width=0.8,colorup='g',colordown='r')
 ```
 ![CandleStickTSLA](CandleStickTSLA.png)
 
+## Basic Financial Analysis
+### 1. Daily Percentage Change
+- If the price fluctuate wildly then this value would be larger whether it's a larger negative number or a large positive number depending on whether you're gaining or losing.
+```python
+Tesla['Returns']= Tesla['Close'].pct_change() #Same:Tesla['Returns']= (Tesla['Close']/Tesla['Close'].shift(1))-1
+Ford['Returns']= Ford['Close'].pct_change()
+GM['Returns']= GM['Close'].pct_change()
+```
+#### Histogram
+```python
+Tesla['Returns'].hist(bins=100)
+Ford['Returns'].hist(bins=100)
+GM['Returns'].hist(bins=100)
+```
+![HisTSLA](HisTSLA.png)*TSLA*![HisgF](HisgF.png)*F*![HisGM](HisGM.png)*GM*
+##### Stacked Histogram
+```python
+GM['Returns'].hist(bins=100,label='GM',figsize=(10,8),alpha=0.4)
+Ford['Returns'].hist(bins=100,label='Ford',figsize=(10,8),alpha=0.4)
+Tesla['Returns'].hist(bins=100,label='Tesla',figsize=(10,8),alpha=0.4)
+plt.legend()
+```
+- As you see above histograms, Tesla has wider distribution than other. So Tesla can actually go up to around negative point to and beyond positive point to. The stacked histogram below shows more clear that Tesla has more volitility than other stocks.
+![StackedHistogram](StackedHistogram.png)
+#### Kernel Density Estimation
+```python
+Tesla['Returns'].plot.kde(label='Tesla',figsize=(10,5))
+Ford['Returns'].plot.kde(label='Ford')
+GM['Returns'].plot.kde(label='GM')
+plt.legend()
+```
+![KDEcurve](KDEcurve.png)
+- Ford clearly peaking much more stable than Tesla and a little more stable than GM. So Ford with the highest peak centered around zero that a lot of daily return tend to be the same. It's relatively flat stock in comparison to Tesla. You can see Tesla here is little wider meaning a little more volatility.
+#### Box Plot
+```python
+box_df=pd.concat([Tesla['Returns'],Ford['Returns'],GM['Returns']],axis=1)
+box_df.columns=['Tesla Ret','Ford Ret','GM Ret']
+box_df.plot.box(figsize=(8,11))
+```
+![BoxPlot](BoxPlot.png)
+
+
+
 
 
 

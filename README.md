@@ -31,7 +31,7 @@ GM['Open'].plot(label='GM')
 plt.legend();
 ```
 ### Open Price Trend
-![Open Price Line Plot](https://github.com/amandalee0517/Stock-Market-Analysis-Project/blob/main/OpenPriceLinePlot.png)
+![Open Price Line Plot](OpenPriceLinePlot.png)
 
 ```python
 Tesla['Volume'].plot(label='Tesla',figsize=(16,9),title='Volume Trends')
@@ -40,8 +40,30 @@ GM['Volume'].plot(label='GM')
 plt.legend();
 ```
 ### Volume Trend
-![Volume Trend](https://github.com/amandalee0517/Stock-Market-Analysis-Project/blob/main/VolumeTrend.png)
+![Volume Trend](VolumeTrend.png)
 
 
-**What happened on the maximun trading volumne for Tesla?**
+**What data is the maximun trading volumne for Tesla?**
 
+```python
+Tesla['Volume'].argmax()
+> Timestamp('2020-02-04 00:00:00')
+```
+
+- Now I need to look at the total market cap of the company, not just the stock price. Unfortunately current data doesn't have that information of total units of stock present. So I need to do as a simple calcualtion to represent total money traded with multpling the Volume column by the Open price. Remember that this still isn't the actual Market Cap, its just a visual representation of the total amount of money being traded around using the time series.
+
+```python
+#Create a new column for each dataframe called "Total Traded" which is the Open Price multiplied by the Volume Traded.
+Tesla['Total Trade'] = Tesla['Open']*Tesla['Volume']
+Ford['Total Trade'] = Ford['Open']*Ford['Volume']
+GM['Total Trade'] = GM['Open']*GM['Volume']
+```
+```python
+#Plot this "Total Traded" against the time index.
+Tesla['Total Trade'].plot(label='Tesla',figsize=(16,10),title='Total Traded')
+Ford['Total Trade'].plot(label='Ford')
+GM['Total Trade'].plot(label='GM')
+plt.legend()
+```
+### Total Traded Trend
+![Total Traded Trend](TotalTrade.png)

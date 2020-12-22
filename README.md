@@ -157,7 +157,7 @@ box_df=pd.concat([Tesla['Returns'],Ford['Returns'],GM['Returns']],axis=1)
 box_df.columns=['Tesla Ret','Ford Ret','GM Ret']
 box_df.plot.box(figsize=(8,11))
 ```
-![BoxPlot](BoxPlot.png)
+![BoxPlot](Fig/BoxPlot.png)
 
 
 

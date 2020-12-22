@@ -31,7 +31,7 @@ Ford['Open'].plot(label='Ford')
 GM['Open'].plot(label='GM')
 plt.legend();
 ```
-![Open Price Line Plot](OpenPriceLinePlot.png)
+![Open Price Line Plot](Fig/OpenPriceLinePlot.png)
 
 ### 2. Volume Trend
 ```python
@@ -40,7 +40,7 @@ Ford['Volume'].plot(label='Ford')
 GM['Volume'].plot(label='GM')
 plt.legend();
 ```
-![Volume Trend](VolumeTrend.png)
+![Volume Trend](Fig/VolumeTrend.png)
 **What data is the maximun trading volumne for Tesla?**
 ```python
 Tesla['Volume'].argmax()
@@ -62,7 +62,7 @@ Ford['Total Trade'].plot(label='Ford')
 GM['Total Trade'].plot(label='GM')
 plt.legend()
 ```
-![Total Traded Trend](TotalTrade.png)
+![Total Traded Trend](Fig/TotalTrade.png)
 - looks like there was huge amount of money traded for Tesla somewhere in mid 2020. What date was that and what happened?
 ```python
 Tesla['Total Trade'].argmax()
@@ -77,7 +77,7 @@ GM['MA50']=GM['Open'].rolling(50).mean()
 GM['MA200']=GM['Open'].rolling(200).mean()
 GM[['Open','MA50','MA200']].plot(figsize=(16,10))
 ```
-![MovingAverageGM](MovingAverageGM.png)
+![MovingAverageGM](Fig/MovingAverageGM.png)
 
 ### 5. Scatter Matrix for Tesla, Ford and GM
 ```python 
@@ -87,7 +87,7 @@ car_merged = pd.concat([Tesla['Open'],Ford['Open'],GM['Open']],axis=1)
 car_merged.columns=['Tesla Open','F Open', 'GM Open']
 scatter_matrix(car_merged,figsize=(8,8),alpha=0.2,hist_kwds={'bins':50})
 ```
-![ScatterMatrix](ScatterMatrix.png)
+![ScatterMatrix](Fig/ScatterMatrix.png)
 - There is a positive correlation between Ford and Genaral Motors. Tesla is quite a bit different has some different behivor and that makes sense because we saw there was a huge jump is Tesla stock price while General Motors and Ford knid of Stayed at the same level.
 
 ### 6. CandleStick Chart for Tesla in January 2020
@@ -116,7 +116,7 @@ ax.xaxis.set_major_formatter(weekFormatter)
 
 candlestick_ohlc(ax, tesla_values, width=0.8,colorup='g',colordown='r')
 ```
-![CandleStickTSLA](CandleStickTSLA.png)
+![CandleStickTSLA](Fig/CandleStickTSLA.png)
 
 ## Basic Financial Analysis
 ### 1. Daily Percentage Change
@@ -132,7 +132,7 @@ Tesla['Returns'].hist(bins=100)
 Ford['Returns'].hist(bins=100)
 GM['Returns'].hist(bins=100)
 ```
-![HisTSLA](HisTSLA.png)*TSLA*![HisgF](HisgF.png)*F*![HisGM](HisGM.png)*GM*
+![HisTSLA](Fig/HisTSLA.png)*TSLA*![HisgF](HisgF.png)*F*![HisGM](HisGM.png)*GM*
 ##### Stacked Histogram
 ```python
 GM['Returns'].hist(bins=100,label='GM',figsize=(10,8),alpha=0.4)
@@ -141,7 +141,7 @@ Tesla['Returns'].hist(bins=100,label='Tesla',figsize=(10,8),alpha=0.4)
 plt.legend()
 ```
 - As you see above histograms, Tesla has wider distribution than other. So Tesla can actually go up to around negative point to and beyond positive point to. The stacked histogram below shows more clear that Tesla has more volitility than other stocks.
-![StackedHistogram](StackedHistogram.png)
+![StackedHistogram](Fig/StackedHistogram.png)
 #### Kernel Density Estimation
 ```python
 Tesla['Returns'].plot.kde(label='Tesla',figsize=(10,5))
@@ -149,7 +149,7 @@ Ford['Returns'].plot.kde(label='Ford')
 GM['Returns'].plot.kde(label='GM')
 plt.legend()
 ```
-![KDEcurve](KDEcurve.png)
+![KDEcurve](Fig/KDEcurve.png)
 - Ford clearly peaking much more stable than Tesla and a little more stable than GM. So Ford with the highest peak centered around zero that a lot of daily return tend to be the same. It's relatively flat stock in comparison to Tesla. You can see Tesla here is little wider meaning a little more volatility.
 #### Box Plot
 ```python

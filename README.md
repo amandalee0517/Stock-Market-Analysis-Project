@@ -158,9 +158,30 @@ box_df.columns=['Tesla Ret','Ford Ret','GM Ret']
 box_df.plot.box(figsize=(8,11))
 ```
 ![BoxPlot](Fig/BoxPlot.png)
+- Here again that Tesla returns quite a bit more of a wide distribution a lot more outliers.
+#### Comparing Daily Returns between Stocks
+```python
+scatter_matrix(box_df,figsize=(8,8),alpha=0.2,hist_kwds={'bins':100})
+```
+![ScatterMatrixDailyReturn](Fig/ScatterMatrixDailyReturn.png)
+- It looks like Ford and GM do have some sort of possible relationship.
+#### Scatter Plot of Ford and GM
+```python
+box_df.plot.scatter(x='Ford Ret',y='GM Ret',alpha=0.5,figsize=(8,8))
+```
+![FordGM](Fig/FordGM.png)
 
-
-
-
-
-
+### 2. Cumulative Daily Returns
+- Cumulative return is computedreativeto the day investment is made. If cumulative return is above one, you are making profits else you are in loss.
+```python
+Tesla['Cumulative Return']=(1+Tesla['Returns']).cumprod()
+Ford['Cumulative Return']=(1+Ford['Returns']).cumprod()
+GM['Cumulative Return']=(1+GM['Returns']).cumprod()
+```
+```python
+Tesla['Cumulative Return'].plot(label='Tesla',figsize=(16,9),title='Cumulative Return')
+Ford['Cumulative Return'].plot(label='Ford')
+GM['Cumulative Return'].plot(label='GM')
+plt.legend()
+```
+![CumuTrend](Fig/CumuTrend.png)
